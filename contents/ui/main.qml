@@ -12,7 +12,7 @@ PlasmoidItem {
     property bool loading: false
     property int refreshInterval: {
         var minutes = Number(Plasmoid.configuration.refreshInterval)
-        return (minutes > 0 ? minutes : 5) * 60000
+        return (minutes > 0 ? minutes : 30) * 60000
     }
     property real dailyGoalHours: {
         var hours = Number(Plasmoid.configuration.dailyGoalHours)
@@ -169,19 +169,28 @@ PlasmoidItem {
                         var percent = Math.floor(seconds / (goal * 3600) * 100)
 
                         if (percent > 100)
-                            return percent + "% of goal;\ntime for a break?"
+                            return percent + "% of goal; time for a break?"
 
                         return percent + "% of goal"
                     }
                     font.pixelSize: 11
                     opacity: 0.75
                     Layout.alignment: Qt.AlignHCenter
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
         }
         QQC2.Label {
             text: i18n("%1h daily goal").arg(root.dailyGoalHours)
             Layout.alignment: Qt.AlignHCenter
+        }
+        QQC2.Label {
+            text: root.todayText
+            Layout.alignment: Qt.AlignHCenter
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            opacity: 0.8
         }
 
         QQC2.BusyIndicator {
