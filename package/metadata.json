@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Id": "io.github.amisquared.Kachemit",
+        "Name": "Kachemit",
+        "Description": "Plasmoid for Hackatime!",
+        "Icon": "chronometer",
+        "Version": "0.1.0",
+        "License": "AGPL-2.0+",
+        "Authors": [{"Name": "Ami Listopad", "Email": "amisquared+kachemit@proton.me"}],
+        "Categories": "Utilities",
+        "ServiceTypes": ["Plasma/Applet"]
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "KPackageStructure": "Plasma/Applet"
+}
