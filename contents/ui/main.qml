@@ -125,13 +125,15 @@ PlasmoidItem {
                         var goal = Number(root.dailyGoalHours)
                         var seconds = Number(root.totalSeconds)
 
-                        if (!isFinite(goal) || goal <= 0 ||
-                            !isFinite(seconds)) {
+                        if (!isFinite(goal) || goal <= 0 || !isFinite(seconds))
                             return "0% of goal"
-                        }
-                        return Math.floor(
-                            seconds / (goal * 3600) * 100
-                        ) + "% of goal"
+
+                        var percent = Math.floor(seconds / (goal * 3600) * 100)
+
+                        if (percent > 100)
+                            return percent + "% of goal;\ntime for a break?"
+
+                        return percent + "% of goal"
                     }
                     font.pixelSize: 11
                     opacity: 0.75
