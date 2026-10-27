@@ -20,9 +20,47 @@ PlasmoidItem {
     }
     
     property real totalSeconds: 0
+
+    compactRepresentation: ColumnLayout {
+        spacing: Kirigami.Units.smallSpacing
+        Layout.minimumWidth: compactRow.implicitWidth
+        Layout.minimumHeight: compactRow.implicitHeight
+
+        Kirigami.Icon {
+            source: "clock"
+            Layout.preferredWidth: Kirigami.Units.iconSizes.small
+            Layout.preferredHeight: Kirigami.Units.iconSizes.small
+        }
+        QQC2.Label {
+            text: i18n("Hackatime")
+        }
+        QQC2.Label {
+            text: {
+                var seconds = Math.floor(root.totalSeconds || 0)
+                var hours = Math.floor(seconds / 3600)
+                var minutes = Math.floor((seconds % 3600) / 60)
+                return hours + "h " + minutes + "m"
+            }
+            font.bold: true
+        }   
+
+        QQC2.ToolTip.visible: compactMouse.containsMouse
+        QQC2.ToolTip.text: i18n("%1n of daily goal").arg(
+            root.dailyGoalHours > 0
+            ? Math.floor(root.totalSeconds / (root.dailyGoalHours * 3600) * 100)
+            : 0
+        )
+        
+        MouseArea {
+            id: compactMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.NoButton
+        }
+    }
     
     fullRepresentation: ColumnLayout {
-        spacing: Kirigami.Units.smallSpacing
+        spacing: Kirigami.Units.largeSpacing
         Layout.preferredWidth: Kirigami.Units.gridUnit * 20
         Layout.preferredHeight: Kirigami.Units.gridUnit * 16
         

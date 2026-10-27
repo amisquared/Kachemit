@@ -6,7 +6,11 @@
         "Icon": "chronometer",
         "Version": "0.1.0",
         "License": "AGPL-2.0+",
-        "Authors": [{"Name": "Ami Listopad", "Email": "amisquared+kachemit@proton.me"}],
+        "Authors": [
+            {
+                "Name": "Ami Listopad"
+            }
+        ],
         "Categories": "Utilities",
         "ServiceTypes": ["Plasma/Applet"]
     },
